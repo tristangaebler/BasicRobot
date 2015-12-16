@@ -6,4 +6,9 @@ public class EV3Bot
 	{
 		
 	}
+	
+	private void displayMessage(String message)
+	{
+		
+	}
 }
