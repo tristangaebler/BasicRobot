@@ -10,7 +10,6 @@ public class BotController
 	private String message;
 	private int xPosition, yPosition;
 	private long waitTime;
-	
 	private EV3Bot simpleBot;
 	
 	public BotController() 
@@ -18,7 +17,7 @@ public class BotController
 		this.xPosition = 50;
 		this.yPosition = 100;
 		this.waitTime = 4000;
-		this.message = "I am a robt";
+		this.message = "I am a robot";
 		
 		simpleBot = new EV3Bot();
 		
