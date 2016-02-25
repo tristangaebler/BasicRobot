@@ -58,13 +58,15 @@ public class EV3Bot
 		//call private helper method here
 		ultrasonicSamples = new float[distanceSensor.sampleSize()];
 		distanceSensor.fetchSample(ultrasonicSamples, 0);
-		if(ultrasonicSamples[0] < 2.5)
+		if(ultrasonicSamples[0] < 60.96)
 		{
-			botPilot.travel(20.00);
+			botPilot.travel(447.04);
+			botPilot.rotate(-50);
 		}
 		else
 		{
-			botPilot.travel(254.00);
+			botPilot.travel(586.74);
+			botPilot.rotate(50);
 		}
 	}
 	
