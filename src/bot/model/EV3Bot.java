@@ -20,6 +20,8 @@ public class EV3Bot
 	private MovePilot botPilot;
 	private EV3UltrasonicSensor distanceSensor;
 	private EV3TouchSensor backTouch;
+	private float [] touchSamples;
+	private float[] ultrasonicSamples;
 	
 	public EV3Bot()
 	{
@@ -44,12 +46,26 @@ public class EV3Bot
 		botPilot = new MovePilot(chassis);
 	}
 	
-	
+	/*
+	 * These will be the measurements for my robot. 16x12x2 = how many of my feet I measured.
+	 * From the first door to the long way: 176 inches = 447.04 Centimeters
+	 * The long distance: 231 inches = 586.74 Centimeters
+	 * The short distance door: 24 inches : 60.96 Centimeters
+	 */
 	public void driveRoom()
 	{
 		
 		//call private helper method here
-		displayMessage("DriveRoom");
+		ultrasonicSamples = new float[distanceSensor.sampleSize()];
+		distanceSensor.fetchSample(ultrasonicSamples, 0);
+		if(ultrasonicSamples[0] < 2.5)
+		{
+			botPilot.travel(20.00);
+		}
+		else
+		{
+			botPilot.travel(254.00);
+		}
 	}
 	
 	private void displayMessage()
