@@ -56,7 +56,7 @@ public class EV3Bot
 	{
 		
 		//call private helper method here
-		ultrasonicSamples = new float[distanceSensor.sampleSize()];
+/*		ultrasonicSamples = new float[distanceSensor.sampleSize()];
 		distanceSensor.fetchSample(ultrasonicSamples, 0);
 		if(ultrasonicSamples[0] < 60.96)
 		{
@@ -67,7 +67,14 @@ public class EV3Bot
 		{
 			botPilot.travel(586.74);
 			botPilot.rotate(50);
-		}
+		}*/
+		
+		ultrasonicSamples = new float [distanceSensor.sampleSize()];
+		distanceSensor.fetchSample(ultrasonicSamples, 0);
+		
+		shortRobotTravel();
+		longRobotTravel();
+		
 	}
 	
 	private void displayMessage()
@@ -82,5 +89,26 @@ public class EV3Bot
 		Delay.msDelay(waitTime);
 	}
 	
+	private void shortRobotTravel()
+	{
+		botPilot.travel(760.2);
+		botPilot.rotate(66);
+		botPilot.travel(3300.2);
+		botPilot.rotate(-66);
+		botPilot.travel(5565.8);
+		botPilot.rotate(65);
+		botPilot.travel(3350.2);
+	}
+	
+	private void longRobotTravel()
+	{
+		botPilot.travel(3350.2);
+		botPilot.rotate(-66);
+		botPilot.travel(5565.8);
+		botPilot.rotate(65);
+		botPilot.travel(3300.2);
+		botPilot.rotate(-66);
+		botPilot.travel(760);
+	}
 
 }
