@@ -43,7 +43,7 @@ public class EV3Bot
 	private void setUpPilot()
 	{
 		Wheel leftWheel = WheeledChassis.modelWheel(Motor.A, 43.3).offset(-72);
-		Wheel rightWheel = WheeledChassis.modelWheel(Motor.B, 43.3).offset(-72);
+		Wheel rightWheel = WheeledChassis.modelWheel(Motor.B, 43.3).offset(72);
 		WheeledChassis chassis= new WheeledChassis(new Wheel[]{leftWheel, rightWheel}, WheeledChassis.TYPE_DIFFERENTIAL);
 		botPilot = new MovePilot(chassis);
 	}
@@ -73,10 +73,10 @@ public class EV3Bot
 		}
 		
 		//ultrasonicSamples = new float [distanceSensor.sampleSize()];
-		distanceSensor.fetchSample(ultrasonicSamples, 0);
+		//distanceSensor.fetchSample(ultrasonicSamples, 0);
 		
-//		shortRobotTravel();
-//		longRobotTravel();
+		//shortRobotTravel();
+		//longRobotTravel();
 		
 	}
 	
@@ -89,11 +89,13 @@ public class EV3Bot
 		{
 			if(ultrasonicSamples[0] < 30)
 			{
-
+				botPilot.travel(-30);
+				botPilot.rotate(60);
 			}
 			else
 			{
-			
+				botPilot.travel(30);
+				botPilot.rotate(-60);
 			}
 		}
 		driveCount++;
@@ -125,11 +127,11 @@ public class EV3Bot
 	
 	private void longRobotTravel()
 	{
-		botPilot.travel(3340.2);
+		botPilot.travel(3300.2);
 		botPilot.rotate(-66);
 		botPilot.travel(5565.8);
 		botPilot.rotate(65);
-		botPilot.travel(3300.2);
+		botPilot.travel(3000);
 		botPilot.rotate(-66);
 		botPilot.travel(760);
 	}
