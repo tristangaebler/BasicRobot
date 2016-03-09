@@ -22,6 +22,7 @@ public class EV3Bot
 	private EV3TouchSensor backTouch;
 	private float [] touchSamples;
 	private float[] ultrasonicSamples;
+	private int driveCount;
 	
 	public EV3Bot()
 	{
@@ -29,6 +30,7 @@ public class EV3Bot
 		this.xPosition = 50;
 		this.yPosition = 50;
 		this.waitTime = 4_000;
+		this.driveCount = 0;
 		
 		distanceSensor = new EV3UltrasonicSensor(LocalEV3.get().getPort("S1"));
 		backTouch = new EV3TouchSensor(LocalEV3.get().getPort("S2"));
@@ -56,25 +58,46 @@ public class EV3Bot
 	{
 		
 		//call private helper method here
-/*		ultrasonicSamples = new float[distanceSensor.sampleSize()];
+		ultrasonicSamples = new float[distanceSensor.sampleSize()];
 		distanceSensor.fetchSample(ultrasonicSamples, 0);
-		if(ultrasonicSamples[0] < 60.96)
+		shortRobotTravel();
+		if(ultrasonicSamples[0] < 30)
 		{
-			botPilot.travel(447.04);
-			botPilot.rotate(-50);
+			shortRobotTravel();
+			displayMessage("short");
 		}
 		else
 		{
-			botPilot.travel(586.74);
-			botPilot.rotate(50);
-		}*/
+			longRobotTravel();
+			displayMessage("long");
+		}
 		
-		ultrasonicSamples = new float [distanceSensor.sampleSize()];
+		//ultrasonicSamples = new float [distanceSensor.sampleSize()];
 		distanceSensor.fetchSample(ultrasonicSamples, 0);
 		
-		shortRobotTravel();
-		longRobotTravel();
+//		shortRobotTravel();
+//		longRobotTravel();
 		
+	}
+	
+	public void avoidObjects()
+	{
+		ultrasonicSamples = new float[distanceSensor.sampleSize()];
+		distanceSensor.fetchSample(ultrasonicSamples, 0);
+		
+		while(driveCount <= 100)
+		{
+			if(ultrasonicSamples[0] < 30)
+			{
+
+			}
+			else
+			{
+			
+			}
+		}
+		driveCount++;
+		distanceSensor.fetchSample(ultrasonicSamples, 0);
 	}
 	
 	private void displayMessage()
@@ -102,7 +125,7 @@ public class EV3Bot
 	
 	private void longRobotTravel()
 	{
-		botPilot.travel(3350.2);
+		botPilot.travel(3340.2);
 		botPilot.rotate(-66);
 		botPilot.travel(5565.8);
 		botPilot.rotate(65);
