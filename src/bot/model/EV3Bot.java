@@ -129,7 +129,7 @@ public class EV3Bot
 	{
 		botPilot.travel(3300.2);
 		botPilot.rotate(-66);
-		botPilot.travel(5565.8);
+		botPilot.travel(5000);
 		botPilot.rotate(65);
 		botPilot.travel(3000);
 		botPilot.rotate(-66);
