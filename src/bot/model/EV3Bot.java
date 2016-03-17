@@ -56,17 +56,17 @@ public class EV3Bot
 	 */
 	public void driveRoom()
 	{
-		
 		ultrasonicSamples = new float [distanceSensor.sampleSize()];
   
-		if(ultrasonicSamples[0] < 30) 
+		if(ultrasonicSamples[0] >= 610) 
 		{
-			shortRobotTravel();//
+			longRobotTravel();
 			displayMessage("driveRoom");
 		}
 		else
 		{
-			longRobotTravel();
+		
+			shortRobotTravel();
 			displayMessage("driveRoom");
 			botPilot.travel(0);
 		}
