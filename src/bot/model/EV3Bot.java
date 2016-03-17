@@ -57,26 +57,19 @@ public class EV3Bot
 	public void driveRoom()
 	{
 		
-		//call private helper method here
-		ultrasonicSamples = new float[distanceSensor.sampleSize()];
-		distanceSensor.fetchSample(ultrasonicSamples, 0);
-		shortRobotTravel();
-		if(ultrasonicSamples[0] < 30)
+		ultrasonicSamples = new float [distanceSensor.sampleSize()];
+  
+		if(ultrasonicSamples[0] < 30) 
 		{
-			shortRobotTravel();
-			displayMessage("short");
+			shortRobotTravel();//
+			displayMessage("driveRoom");
 		}
 		else
 		{
 			longRobotTravel();
-			displayMessage("long");
+			displayMessage("driveRoom");
+			botPilot.travel(0);
 		}
-		
-		//ultrasonicSamples = new float [distanceSensor.sampleSize()];
-		//distanceSensor.fetchSample(ultrasonicSamples, 0);
-		
-		//shortRobotTravel();
-		//longRobotTravel();
 		
 	}
 	
@@ -116,24 +109,27 @@ public class EV3Bot
 	
 	private void shortRobotTravel()
 	{
+		LCD.drawString("Short", xPosition, yPosition);
 		botPilot.travel(760.2);
-		botPilot.rotate(66);
-		botPilot.travel(3300.2);
-		botPilot.rotate(-66);
-		botPilot.travel(5565.8);
+		botPilot.rotate(65);
+		botPilot.travel(3320.2);
+		botPilot.rotate(-65);
+		botPilot.travel(5400.8);
 		botPilot.rotate(65);
 		botPilot.travel(3350.2);
 	}
 	
 	private void longRobotTravel()
 	{
-		botPilot.travel(3300.2);
-		botPilot.rotate(-66);
-		botPilot.travel(5000);
+		LCD.drawString("long", xPosition, yPosition);
+		botPilot.travel(3350.2);
+		botPilot.rotate(-65);
+		botPilot.travel(5500.8);
 		botPilot.rotate(65);
-		botPilot.travel(3000);
-		botPilot.rotate(-66);
+		botPilot.travel(3320.2);
+		botPilot.rotate(-65);
 		botPilot.travel(760);
+
 	}
 
 }
